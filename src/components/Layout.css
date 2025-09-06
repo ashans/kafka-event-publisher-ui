@@ -1,0 +1,219 @@
+/* Layout Styles */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Theme */
+.app-layout.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --accent-color: #007bff;
+  --hover-color: #f8f9fa;
+  --active-color: #007bff;
+}
+
+/* Dark Theme */
+.app-layout.dark {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #404040;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #404040;
+  --accent-color: #0d6efd;
+  --hover-color: #404040;
+  --active-color: #0d6efd;
+}
+
+/* Apply theme variables */
+.app-layout {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Global reset for buttons */
+.app-layout button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background-color: var(--hover-color);
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.app-info {
+  text-align: center;
+}
+
+.app-logo {
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.app-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.version {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.features-list,
+.tech-stack {
+  text-align: left;
+  margin: 1.5rem 0;
+}
+
+.features-list h4,
+.tech-stack h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.features-list ul {
+  margin: 0;
+  padding-left: 1rem;
+  list-style: none;
+}
+
+.features-list li {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.tech-stack p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Mobile Modal Styles */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 100%;
+    margin: 0.5rem;
+    max-height: 90vh;
+  }
+  
+  .modal-header,
+  .modal-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .modal-header {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.25rem;
+  }
+}

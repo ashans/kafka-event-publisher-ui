@@ -1,0 +1,575 @@
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  background-color: var(--bg-primary);
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  padding: 0.75rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-header h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.loading-indicator span {
+  position: relative;
+}
+
+.loading-indicator span::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 8px;
+  border: 2px solid var(--text-secondary);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Inline Editable Event Name Styles */
+.event-name-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  line-height: 1.2;
+}
+
+.event-name-title:hover {
+  background-color: var(--hover-color);
+}
+
+.event-name-input {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 2px 4px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 500px;
+  line-height: 1.2;
+}
+
+.event-name-input:focus {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.form-header p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Form Styles */
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+/* Two-Column Layout */
+.form-columns {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 1rem;
+  align-items: start;
+  flex: 1;
+}
+
+.form-column-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-column-right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Form Sections */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-section-expandable {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+
+/* For sections without header (just title) */
+.form-section > .section-title:not(.section-header .section-title) {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+
+/* Headers Section */
+.headers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.header-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+.header-key,
+.header-value {
+  flex: 1;
+}
+
+.empty-state {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: var(--bg-secondary);
+  border-radius: 3px;
+  margin: 0;
+}
+
+/* Key Section */
+.key-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.key-type,
+.value-type,
+.partitioner-type,
+.form-select {
+  padding: 0.375rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.key-value {
+  flex: 1;
+}
+
+/* Payload Section */
+.payload-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.payload-header .section-title {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.json-format-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.json-format-checkbox input[type="checkbox"] {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent-color);
+}
+
+.checkbox-label {
+  cursor: pointer;
+}
+
+.json-formatted {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  tab-size: 2;
+}
+
+/* Button Icons */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+}
+
+.btn-icon:hover {
+  background-color: var(--hover-color);
+  color: var(--text-primary);
+}
+
+.btn-add:hover {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.btn-delete:hover {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+/* Expandable form group for body textarea */
+.form-group-expandable {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.125rem;
+}
+
+.form-input,
+.form-textarea {
+  padding: 0.375rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+}
+
+/* Datalist Suggestions Styling */
+input[list]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+datalist {
+  position: absolute;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Expandable textarea fills available height */
+.form-textarea-expandable {
+  flex: 1;
+  resize: none;
+  min-height: 150px;
+  height: auto;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.375rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 0.375rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--hover-color);
+  color: var(--text-primary);
+}
+
+/* Legacy styles for backward compatibility */
+.content-container h1 {
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.content-container p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Medium Display Optimization */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .content-container {
+    max-width: 95%;
+    padding: 1.25rem;
+  }
+  
+  .form-columns {
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Large Display Optimization */
+@media (min-width: 1200px) {
+  .content-container {
+    max-width: 90%;
+    padding: 1.5rem 2rem;
+  }
+  
+  .form-columns {
+    grid-template-columns: 400px 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .content-container {
+    max-width: 85%;
+    padding: 2rem 3rem;
+  }
+  
+  .form-columns {
+    grid-template-columns: 450px 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 0.75rem;
+  }
+  
+  .form-header {
+    margin-bottom: 0.75rem;
+  }
+  
+  .form-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  /* Stack columns vertically on tablet and mobile */
+  .form-columns {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    flex: 1;
+  }
+  
+  /* Mobile form adjustments */
+  .header-row {
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.375rem;
+  }
+  
+  /* Keep expandable behavior on mobile */
+  .form-textarea-expandable {
+    min-height: 150px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-container {
+    padding: 0.5rem;
+  }
+  
+  .form-header {
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .form-columns {
+    gap: 0.75rem;
+  }
+  
+  .form-column-left {
+    gap: 0.75rem;
+  }
+  
+  .form-section {
+    margin-bottom: 1rem;
+  }
+  
+  .header-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  
+  .header-row .btn-icon {
+    justify-self: end;
+    grid-row: 1;
+    grid-column: 1;
+  }
+  
+  .form-textarea-expandable {
+    min-height: 120px;
+  }
+  
+  /* Mobile payload header */
+  .payload-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .json-format-checkbox {
+    font-size: 0.8125rem;
+  }
+}
