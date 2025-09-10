@@ -6,7 +6,8 @@ import {
   IoSunnyOutline,
   IoMoonOutline,
   IoAdd,
-  IoDocumentTextOutline
+  IoDocumentTextOutline,
+  IoCloseOutline
 } from 'react-icons/io5';
 import { SiApachekafka } from 'react-icons/si';
 
@@ -14,6 +15,7 @@ interface SidebarProps {
   menuItems: MenuItem[];
   selectedItem: string;
   onItemSelect: (itemId: string) => void;
+  onItemDelete: (itemId: string) => void;
   onSettingsClick: () => void;
   onThemeToggle: () => void;
   onAboutClick: () => void;
@@ -24,6 +26,7 @@ const Sidebar = ({
   menuItems,
   selectedItem,
   onItemSelect,
+  onItemDelete,
   onSettingsClick,
   onThemeToggle,
   onAboutClick,
@@ -44,20 +47,35 @@ const Sidebar = ({
         <ul className="nav-list">
           {menuItems.map((item) => (
             <li key={item.id} className={`nav-item ${item.type === 'add-new' ? 'nav-item-add-new' : ''}`}>
-              <button
-                className={`nav-button ${selectedItem === item.id ? 'active' : ''} ${item.type === 'add-new' ? 'add-new-button' : ''}`}
-                onClick={() => onItemSelect(item.id)}
-                title={item.type === 'add-new' ? 'Add New Event' : undefined}
-              >
-                {item.type === 'add-new' ? (
+              {item.type === 'add-new' ? (
+                <button
+                  className="nav-button add-new-button"
+                  onClick={() => onItemSelect(item.id)}
+                  title="Add New Event"
+                >
                   <span className="nav-icon"><IoAdd /></span>
-                ) : (
-                  <>
+                </button>
+              ) : (
+                <div className="nav-item-content">
+                  <button
+                    className={`nav-button ${selectedItem === item.id ? 'active' : ''}`}
+                    onClick={() => onItemSelect(item.id)}
+                  >
                     <span className="nav-icon"><IoDocumentTextOutline /></span>
                     <span className="nav-text">{item.name}</span>
-                  </>
-                )}
-              </button>
+                  </button>
+                  <button
+                    className="nav-delete-button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onItemDelete(item.id);
+                    }}
+                    title="Delete Event"
+                  >
+                    <IoCloseOutline />
+                  </button>
+                </div>
+              )}
             </li>
           ))}
         </ul>

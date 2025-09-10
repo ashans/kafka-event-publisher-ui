@@ -166,6 +166,16 @@ const MainContent: React.FC<MainContentProps> = ({
       return;
     }
 
+    if (!formData.valueType) {
+      alert('Please select a value type');
+      return;
+    }
+
+    if (!formData.partitionerType) {
+      alert('Please select a partitioner type');
+      return;
+    }
+
     try {
       setIsPublishing(true);
       
@@ -208,11 +218,11 @@ const MainContent: React.FC<MainContentProps> = ({
   const handleClearForm = () => {
     if (window.confirm('Are you sure you want to clear the form?')) {
       onFormDataUpdate(selectedItem, 'topic', '');
-      onFormDataUpdate(selectedItem, 'keyType', 'string');
+      onFormDataUpdate(selectedItem, 'keyType', '');
       onFormDataUpdate(selectedItem, 'keyValue', '');
-      onFormDataUpdate(selectedItem, 'valueType', 'json');
+      onFormDataUpdate(selectedItem, 'valueType', '');
       onFormDataUpdate(selectedItem, 'value', '');
-      onFormDataUpdate(selectedItem, 'partitionerType', 'defined');
+      onFormDataUpdate(selectedItem, 'partitionerType', '');
       onFormDataUpdate(selectedItem, 'headers', []);
       setIsJsonFormatting(false);
     }
@@ -326,8 +336,9 @@ const MainContent: React.FC<MainContentProps> = ({
                     onChange={(e) => handleInputChange('keyType', e.target.value)}
                     disabled={isLoading}
                   >
+                    <option value="">Select key type</option>
                     {isLoading ? (
-                      <option value="">Loading...</option>
+                      <option value="" disabled>Loading...</option>
                     ) : keyTypes.length > 0 ? (
                       keyTypes.map((keyType) => (
                         <option key={keyType.id} value={keyType.id}>
@@ -362,8 +373,9 @@ const MainContent: React.FC<MainContentProps> = ({
                   onChange={(e) => handleInputChange('valueType', e.target.value)}
                   disabled={isLoading}
                 >
+                  <option value="">Select value type</option>
                   {isLoading ? (
-                    <option value="">Loading...</option>
+                    <option value="" disabled>Loading...</option>
                   ) : valueTypes.length > 0 ? (
                     valueTypes.map((valueType) => (
                       <option key={valueType.id} value={valueType.id}>
@@ -390,8 +402,9 @@ const MainContent: React.FC<MainContentProps> = ({
                   onChange={(e) => handleInputChange('partitionerType', e.target.value)}
                   disabled={isLoading}
                 >
+                  <option value="">Select partitioner</option>
                   {isLoading ? (
-                    <option value="">Loading...</option>
+                    <option value="" disabled>Loading...</option>
                   ) : partitionerTypes.length > 0 ? (
                     partitionerTypes.map((partitionerType) => (
                       <option key={partitionerType.id} value={partitionerType.id}>
@@ -450,7 +463,7 @@ const MainContent: React.FC<MainContentProps> = ({
               type="button" 
               className="btn btn-primary"
               onClick={handlePublishEvent}
-              disabled={isLoading || isPublishing || !formData.topic}
+              disabled={isLoading || isPublishing || !formData.topic || !formData.valueType || !formData.partitionerType}
             >
               <IoSendOutline />
               {isPublishing ? 'Publishing...' : 'Publish Event'}

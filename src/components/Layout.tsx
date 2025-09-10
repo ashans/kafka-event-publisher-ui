@@ -87,11 +87,11 @@ const Layout: React.FC = () => {
         id: 'item-1', 
         topic: '', 
         headers: [], 
-        keyType: 'string', 
+        keyType: '', 
         keyValue: '', 
-        valueType: 'json', 
+        valueType: '', 
         value: '',
-        partitionerType: 'defined'
+        partitionerType: ''
       }
     ])
   );
@@ -154,11 +154,11 @@ const Layout: React.FC = () => {
         id: newItemId,
         topic: '',
         headers: [],
-        keyType: 'string',
+        keyType: '',
         keyValue: '',
-        valueType: 'json',
+        valueType: '',
         value: '',
-        partitionerType: 'defined'
+        partitionerType: ''
       };
       setFormDataList([...formDataList, newFormData]);
       
@@ -235,6 +235,31 @@ const Layout: React.FC = () => {
     );
   };
 
+  const handleItemDelete = (itemId: string) => {
+    // Don't delete if there's only one data item left
+    const dataItems = menuItems.filter(item => item.type === 'data');
+    if (dataItems.length <= 1) {
+      alert('Cannot delete the last event. At least one event must remain.');
+      return;
+    }
+
+    if (window.confirm('Are you sure you want to delete this event? This action cannot be undone.')) {
+      // Remove from menu items
+      setMenuItems(prevItems => prevItems.filter(item => item.id !== itemId));
+      
+      // Remove from form data
+      setFormDataList(prevList => prevList.filter(item => item.id !== itemId));
+      
+      // If the deleted item was selected, select another item
+      if (selectedItem === itemId) {
+        const remainingDataItems = menuItems.filter(item => item.type === 'data' && item.id !== itemId);
+        if (remainingDataItems.length > 0) {
+          setSelectedItem(remainingDataItems[0].id);
+        }
+      }
+    }
+  };
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
@@ -255,6 +280,7 @@ const Layout: React.FC = () => {
         menuItems={menuItems}
         selectedItem={selectedItem}
         onItemSelect={handleItemSelect}
+        onItemDelete={handleItemDelete}
         onSettingsClick={handleSettings}
         onThemeToggle={toggleTheme}
         onAboutClick={handleAbout}
